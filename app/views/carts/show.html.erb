@@ -5,6 +5,12 @@
   </header>
 
   <div class="panel panel-default items">
+
+    <% @cart = cart %>
+    <% puts cart %>
+    <% if cart == {} %>
+      <p>Your cart is empty!! Please visit the homepage <%= link_to "Homepage", root_path%></p>
+    <% else %>
     <table class="table table-bordered">
       <thead>
         <tr>
@@ -31,6 +37,7 @@
         </tr>
       </tfoot>
     </table>
+
   </div>
 
   <div class="row">
@@ -48,6 +55,7 @@
         </script>
       <% end %>
     </div>
+    <% end %>
   </div>
 
 </section>
