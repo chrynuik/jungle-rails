@@ -26,6 +26,34 @@
       </div>
     </div>
 
+    <div class="row">
+      <h2>Reviews</h2>
+
+      <% @product.reviews.each do |review| %>
+      <div>
+        <p><%= review.rating %></p>
+        <p><%= review.description %></p>
+        <%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </div>
+      <% end %>
+    </div>
+
+    <div class=row>
+      <h2>New review</h2>
+
+    <%= form_for([@product, @review]) do |f| %>
+      <div class="field">
+        <%= f.label :rating %>
+        <%= f.text_field :rating %>
+        <%= f.label :description %>
+        <%= f.text_area :description %>
+      </div>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    <% end %>
+    </div>
+
   </article>
 
 </section>

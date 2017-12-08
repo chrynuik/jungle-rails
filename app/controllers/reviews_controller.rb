@@ -6,9 +6,9 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @product = Product.find(params[:product_id])
     @review.product = @product
-    @review.user = current_user
+    @review.user_id = current_user
 
-    if review.save
+    if @review.save!
       redirect_to @product, notice: 'Review successfully created.'
     else
       render @product
@@ -17,7 +17,7 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review.destroy
-    redirect to @review.product, notice: 'Review deleted.'
+    redirect_to @review.product, notice: 'Review deleted.'
   end
 
   private
@@ -26,7 +26,7 @@ class ReviewsController < ApplicationController
     end
 
   def review_params
-    params.require(:review).permit(:rating)
-    params.require(:review).permit(:product_id)
+    params.require(:review).permit(:rating, :description)
+    #params.require(:review).permit(:product_id)
   end
 end
