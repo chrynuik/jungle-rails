@@ -1,9 +1,4 @@
-class Admin::DashboardController < ApplicationController
-  Rails.configuration.admin = {
-    :user => ENV['USER'],
-    :password => ENV['PASSWORD']
-  }
-  http_basic_authenticate_with name: Rails.configuration.admin[:user], password: Rails.configuration.admin[:password]
+class Admin::DashboardController <
   def show
   end
 end

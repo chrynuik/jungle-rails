@@ -4,22 +4,20 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Thanks for your order <%= @order.email %></h1>
-    <p>
-      Your order was made.
-    </p>
-    <p>Thanks for your purchase and have a great day!</p>
+    <h1>Thanks for your order</h1>
     <% order_total = 0 %>
     <% @order.line_items.each do |line_item| %>
     <%product = line_item.product %>
     <%total_dollars = line_item.total_price_cents / 100.0%>
-    <div><%= product.name %></div>
-    <div><%= image_tag product.image.tiny %></div>
+    <p><%= product.name %></p>
+    <p><%= image_tag product.image.tiny %></p>
     <p><%= product.description %></p>
     <p><%= product.quantity %><p>
-    <%= total_dollars%>
+    <p>Amount <%= total_dollars%></p>
     <% order_total += line_item.total_price_cents %>
     <% end %>
-    <p><%= order_total / 100.0 %></p>
+    <hr>
+    <p>Your total <%= order_total / 100.0 %></p>
+    <p>Thanks for your purchase and have a great day!</p>
   </body>
 </html>
