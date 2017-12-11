@@ -1,9 +1,21 @@
-<h1>Login</h1>
+<header class="page-header">
+  <h1>Login</h1>
+</header>
 
-<%= form_tag '/login' do %>
+<div class ="row">
+  <div class ="col-sm-6 col-sm-offset-1 login-form-cont">
+  <%= form_tag '/login' do %>
+    <div class ="form-group">
 
-  Email: <%= text_field_tag :email %>
-  Password: <%= password_field_tag :password %>
-  <%= submit_tag "Submit" %>
+    <%= label_tag :email %>
+    <%= text_field_tag :email%>
+  </div>
+  <div class ="form-group">
+    <%= label_tag :password %>
+    <%= password_field_tag :password %>
+  </div>
+    <%= submit_tag "Submit", class: 'btn btn-primary' %>
 
-<% end %>
+  <% end %>
+  </div>
+</div>

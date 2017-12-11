@@ -9,7 +9,7 @@
     <% @cart = cart %>
     <% puts cart %>
     <% if cart == {} %>
-      <p>Your cart is empty!! Please visit the homepage <%= link_to "Homepage", root_path%></p>
+      <p class="empty-cart-message">Your cart is empty!! Please visit the homepage <%= link_to "Homepage", root_path%></p>
     <% else %>
     <table class="table table-bordered">
       <thead>

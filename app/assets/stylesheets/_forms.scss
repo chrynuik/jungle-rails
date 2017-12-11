@@ -1,0 +1,6 @@
+.login-form-cont {
+  input[type="text"],
+  input[type="password"] {
+    @extend .form-control;
+  }
+}

@@ -37,7 +37,7 @@ cat3 = Category.find_or_create_by! name: 'Furniture'
 user1 = User.find_or_create_by! first_name: 'Catherine',
  last_name: 'H',
  email: 'catherine.hrynuik@gmail.com',
- password_digest: ENV['PASSWORD']
+ password_digest: ENV['ADMIN_PASSWORD']
 
 
 puts "Re-creating Products ..."

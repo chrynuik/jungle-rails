@@ -8,10 +8,12 @@
   <p class="description">
     <%= product.description %>
   </p>
-  <%# rating_sub_total = @review.rating.sum %>
-  <%# rating_amount = @review.rating.count %>
-  <%# rating = rating_sub_total / rating_amount %>
-  <p>Rating <%#= rating%></p>
+  <% @ratings = Review.where(product_id: product).pluck(:rating) %>
+  <% unless @ratings == [] %>
+    <% rating = @ratings.sum / @ratings.size %>
+   <p>Rating: <%= rating %></p>
+  <% end %>
+
   <footer class="actions">
     <%= link_to add_item_cart_path(product_id: product.id), class: 'btn btn-primary', method: :put do %>
       <%= fa_icon "shopping-cart", text: 'Add' %>

@@ -1,7 +1,12 @@
 <%product = line_item.product %>
 <%total_dollars = line_item.total_price_cents / 100.0%>
-<div><%= product.name %></div>
-<div><%= image_tag product.image.tiny %></div>
-<p><%= product.description %></p>
-<p><%= product.quantity %><p>
-<%= total_dollars%>
+<tr>
+  <td><%= image_tag product.image.tiny %></td>
+  <td>
+    <h4><%= product.name %></h4>
+    <p><%= product.description %></p>
+  </td>
+  <td><%= product.price %></td>
+  <td><%= line_item.quantity %></td>
+  <td><%= total_dollars%></td>
+</tr>

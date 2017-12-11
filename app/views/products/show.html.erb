@@ -31,8 +31,8 @@
 
       <% @product.reviews.reverse.each do |review| %>
       <div>
-        <p><%= review.rating %></p>
-        <p><%= review.description %></p>
+        <p>Rating: <%= review.rating %></p>
+        <p>Description <%= review.description %></p>
         <% if current_user %>
           <% if review.user_id == current_user.id %>
           <%= link_to 'Delete', review, method: :delete, data: { confirm: 'Are you sure?' } %>
@@ -46,14 +46,16 @@
       <h2>New review</h2>
 
     <%= form_for([@product, @review]) do |f| %>
-      <div class="field">
+      <div class="form-group">
         <%= f.label :rating %>
         <%= f.select :rating, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]]) %>
+      </div>
+      <div class="form-group">
         <%= f.label :description %>
-        <%= f.text_area :description %>
+        <%= f.text_area :description, class: 'form-control' %>
       </div>
       <div class="actions">
-        <%= f.submit %>
+        <%= f.submit class: 'btn btn-primary'%>
       </div>
     <% end %>
     </div>
