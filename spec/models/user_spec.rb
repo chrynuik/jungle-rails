@@ -3,8 +3,9 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   describe 'Validations' do
     it 'should be valid with all fields' do
-      user = User.create!(first_name: 'catherine', last_name: 'H', email: 'test@example.com', password: 'testtest', password_confirmation: 'testtest')
+      user = User.new(first_name: 'catherine', last_name: 'H', email: 'test@example.com', password: 'testtest', password_confirmation: 'testtest')
       expect(user).to be_valid
+      user.destroy
     end
 
     it 'should be not be valid without first_name' do
@@ -52,18 +53,62 @@ RSpec.describe User, type: :model do
       expect(user).to be_valid
       expect(user2).to_not be_valid
       expect(user2.errors.full_messages).to include('Email has already been taken')
-
+      user.destroy
     end
 
     it 'should be not be valid without a long enough password' do
       user = User.new( first_name: 'catherine', last_name: 'H', email: 'test@example.com', password: 'test', password_confirmation: 'test')
       expect(user).to_not be_valid
       expect(user.errors.full_messages).to include('Password is too short (minimum is 8 characters)')
-
+    end
+  end
+  describe '.authenticate_with_credentials' do
+    it 'should authenticate' do
+      user = User.create!( first_name: 'catherine', last_name: 'H', email: 'test1@example.com', password: 'testtest', password_confirmation: 'testtest')
+      expect(user).to be_valid
+      authenticate_user = User.authenticate_with_credentials('test1@example.com', 'testtest')
+      expect(authenticate_user).to be == user
+      user.destroy
     end
 
-    describe '.authenticate_with_credentials' do
-      # examples for this class method here
+    it 'should authenticate without case sensivity of email' do
+      user = User.create!( first_name: 'catherine', last_name: 'H', email: 'test1@example.com', password: 'testtest', password_confirmation: 'testtest')
+      expect(user).to be_valid
+      authenticate_user = User.authenticate_with_credentials('Test1@example.com', 'testtest')
+      expect(authenticate_user).to be == user
+      user.destroy
+    end
+
+    it 'should not authenticate without case sensivity of password' do
+      user = User.create!( first_name: 'catherine', last_name: 'H', email: 'test1@example.com', password: 'testtest', password_confirmation: 'testtest')
+      expect(user).to be_valid
+      authenticate_user = User.authenticate_with_credentials('test1@example.com', 'testTest')
+      expect(authenticate_user).to be nil
+      user.destroy
+    end
+
+    it 'should not authenticate with the wrong email' do
+      user = User.create!( first_name: 'catherine', last_name: 'H', email: 'test1@example.com', password: 'testtest', password_confirmation: 'testtest')
+      expect(user).to be_valid
+      authenticate_user = User.authenticate_with_credentials('testing@example.com', 'testest')
+      expect(authenticate_user).to be nil
+      user.destroy
+    end
+
+    it 'should not authenticate with the wrong password' do
+      user = User.create!( first_name: 'catherine', last_name: 'H', email: 'test1@example.com', password: 'testtest', password_confirmation: 'testtest')
+      expect(user).to be_valid
+      authenticate_user = User.authenticate_with_credentials('test1@example.com', 'catsdogs')
+      expect(authenticate_user).to be nil
+      user.destroy
+    end
+
+    it 'should authenticate even with whitespace around the email' do
+      user = User.create!( first_name: 'catherine', last_name: 'H', email: 'test1@example.com', password: 'testtest', password_confirmation: 'testtest')
+      expect(user).to be_valid
+      authenticate_user = User.authenticate_with_credentials('  test1@example.com  ', 'testtest')
+      expect(authenticate_user).to be == user
+      user.destroy
     end
 
   end
