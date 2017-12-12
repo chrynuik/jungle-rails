@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Visitor navigates to products page", type: :feature, js: true do
+RSpec.feature "Visitor adds item to cart", type: :feature, js: true do
 
   before :each do
     @category = Category.create! name: 'Apparel'
