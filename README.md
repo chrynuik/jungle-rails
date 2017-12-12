@@ -2,6 +2,11 @@
 
 A mini e-commerce application built with Rails 4.2 for purposes of teaching Rails by example.
 
+## Final Product
+!["Sold out badge"](https://github.com/chrynuik/jungle-rails/blob/master/docs/sold-out-badge.png)
+!["Order List"](https://github.com/chrynuik/jungle-rails/blob/master/docs/order-list.png)
+!["Ratings on page"](https://github.com/chrynuik/jungle-rails/blob/master/docs/ratings-on-products.png)
+!["Empty cart message"](https://github.com/chrynuik/jungle-rails/blob/master/docs/empty-cart-message.png)
 
 ## Setup
 
@@ -17,7 +22,7 @@ A mini e-commerce application built with Rails 4.2 for purposes of teaching Rail
 
 ## Stripe Testing
 
-Use Credit Card # 4111 1111 1111 1111 for testing success scenarios.
+Use Credit Card # 4242 4242 4242 4242 for testing success scenarios.
 
 More information in their docs: <https://stripe.com/docs/testing#cards>
 
@@ -26,3 +31,4 @@ More information in their docs: <https://stripe.com/docs/testing#cards>
 * Rails 4.2 [Rails Guide](http://guides.rubyonrails.org/v4.2/)
 * PostgreSQL 9.x
 * Stripe
+* bcrypt
